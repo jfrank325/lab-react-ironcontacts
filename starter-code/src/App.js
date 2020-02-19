@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Contacts from './Contact';
+import data from './contacts.json';
 
 class App extends Component {
+  state = { contacts: data.slice(0, 5) };
+
+  random = () => {
+    return Math.floor(Math.random() * 10);
+  };
+  addClicked = () => {
+    this.setState({ contacts: [...this.state.contacts, data[this.random()]] });
+  };
+  sortName = () => {
+    this.setState({
+      contacts: [...this.state.contacts].sort((a, b) => {
+        return a.name.localeCompare(b.name);
+      }),
+    });
+  };
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>IronContacts</h1>
+        <button onClick={this.addClicked}>FIND RANDOM</button>
+        <button onClick={this.sortName}>Sort by name</button>
+        <Contacts contacts={this.state.contacts}></Contacts>
       </div>
     );
   }
