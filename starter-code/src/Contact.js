@@ -5,15 +5,15 @@ const Contacts = props => {
     return (
       <>
         <table>
-          <tr>
-            <td>
-              <img src={contact.pictureUrl} alt="" />
-            </td>
-
-            <td>{contact.name}</td>
-
-            <td>{contact.popularity}</td>
-          </tr>
+          <thead>
+            <tr>
+              <td>
+                <img src={contact.pictureUrl} alt="" />
+              </td>
+              <td>{contact.name}</td>
+              <td>{contact.popularity.toFixed(2)}</td>
+            </tr>
+          </thead>
         </table>
       </>
     );
